@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class UserInfo(models.Model):
-    ##user = models.ForeignKey(
-        ##User, on_delete=models.CASCADE, null= True, blank=True)
+class Users(models.Model):
+    userName = models.CharField(max_length = 30)
     organizationName = models.CharField(max_length=200)
     password = models.CharField(max_length = 20)
     zipCode = models.IntegerField(default=0)
+
 
 
 class Task(models.Model):

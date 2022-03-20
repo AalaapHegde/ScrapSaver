@@ -8,9 +8,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 from django.contrib.auth import login
 
-from .models import Task
+from .models import Task, Users
 
 
 class CustomLoginView(LoginView):
@@ -21,9 +22,27 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('tasks')
 
-class RegisterPage(FormView):
+class RegisterPage(forms.Form):
+    username = forms.CharField()
+    organizationName = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    zipCode = forms.IntegerField()
+
+    class Meta:
+        model=Users
+
+
+    # def save(self, commit=True):
+    #     user=super(RegisterPage, self).save(commit=False)
+    #
+    #     if commit:
+    #         user.save()
+    #     return user
+        #user.set_password(self.cleaned_data[])
+
+class RegisterPageFormView(FormView):
     template_name = 'base/register.html'
-    form_class = UserCreationForm
+    form_class = RegisterPage
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
@@ -31,12 +50,15 @@ class RegisterPage(FormView):
         user = form.save()
         if user is not None:
             login(self.request, user)
-        return super(RegisterPage, self).form_valid(form)
+        return super(RegisterPageFormView, self).form_valid(form)
 
-    def get(self, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return redirect('tasks')
-        return super(RegisterPage, self).get(*args, **kwargs)
+    # def get(self, *args, **kwargs):
+    #     if self.request.user.is_authenticated:
+    #         return redirect('tasks')
+    #     return super(RegisterPage, self).get(*args, **kwargs)
+
+
+
 
 
 class TaskList(LoginRequiredMixin, ListView):
