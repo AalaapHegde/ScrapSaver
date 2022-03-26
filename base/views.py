@@ -10,8 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth import login
-
-from .models import Task, Users
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import Task, UserInfo
 
 
 class CustomLoginView(LoginView):
@@ -29,16 +29,19 @@ class RegisterPage(forms.Form):
     zipCode = forms.IntegerField()
 
     class Meta:
-        model=Users
+        model=UserInfo
 
+    #def save(self, ):
 
-    # def save(self, commit=True):
-    #     user=super(RegisterPage, self).save(commit=False)
-    #
-    #     if commit:
-    #         user.save()
-    #     return user
-        #user.set_password(self.cleaned_data[])
+    def user(request):
+        if request.method == 'POST':
+            username = request.POST['username']
+            organizationName = request.POST['organizationName']
+            password = request.POST['password']
+            zipCode = request.POST['zipCode']
+            user = UserInfo.objects.create(username=username, organizationName=organizationName, password=password, zipCode=zipCode)
+        return render(request, 'register.html')
+
 
 class RegisterPageFormView(FormView):
     template_name = 'base/register.html'
@@ -47,7 +50,7 @@ class RegisterPageFormView(FormView):
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form): 
-        user = form.save()
+        user = form.user()
         if user is not None:
             login(self.request, user)
         return super(RegisterPageFormView, self).form_valid(form)
