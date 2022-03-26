@@ -1,12 +1,33 @@
 {% extends 'base/main.html' %}
 {% block content %}
-    <h1>Login</h1>
 
-    <form method = "POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type = 'submit' value = "Login">
-    </form>
+    <div id="login">
+        <form class="form-horizontal" name="loginForm" action="/login/" method="post">
+            {% csrf_token %}
+            {% if next %}
+                <input type="hidden" name="next" value="{{next}}">
+            {% endif %}
+            <div class="control-group">
+                <label class="control-label" for="username">Username:</label>
+                <div class="controls">
+                    <input type="text" name="username" id="username" placeholder="Username">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">Password:</label>
+                <div class="controls">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            </div>
 
-    <p> Don't have an account?<a href = "{% url 'register' %}"> Register</a></p>
-{% endblock content %}
+            <p> Don't have an account?<a href = "{% url 'register' %}"> Register</a></p>
+
+        </form>
+    </div>
+
+{% endblock %}

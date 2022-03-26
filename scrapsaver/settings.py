@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'scrapsaver.urls'
@@ -74,17 +75,35 @@ WSGI_APPLICATION = 'scrapsaver.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'Scrapsaver',
+#         'USER': 'ScrapsaverAdmin',
+#         'PASSWORD': 'scrapsaver123',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Scrapsaver',
-        'USER': 'ScrapsaverAdmin',
-        'PASSWORD': 'scrapsaver123',
-        'HOST': 'localhost',
+        'NAME': 'dtqc7jad3kbj9',
+        'USER': 'qjzvcsohgsmclm',
+        'PASSWORD': '078806e92a801fb26d9f654c5d2891519a35203db6b4680eb5a55eafd630e107',
+        'HOST': 'ec2-52-201-124-168.compute-1.amazonaws.com',
         'PORT': '5432',
-        
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
@@ -117,9 +136,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-
 LOGIN_URL = 'login'
+
+# redirect to home page after login or logout
+LOGIN_REDIRECT_URL = 'task_list'
+LOGOUT_REDIRECT_URL = 'login'
+
+AUTH_USER_MODEL = 'base.Users'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
