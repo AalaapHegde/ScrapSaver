@@ -70,7 +70,6 @@ def user(request):
 
     return redirect("http://127.0.0.1:8000/login/?next=/")
 
-
 class RegisterPageFormView(FormView):
     template_name = 'base/register.html'
     form_class = RegisterPage
@@ -82,11 +81,6 @@ class RegisterPageFormView(FormView):
     #     if user is not None:
     #         login(self.request, user)
     #     return super(RegisterPageFormView, self).form_valid(form)
-
-    # def get(self, *args, **kwargs):
-    #     if self.request.user.is_authenticated:
-    #         return redirect('tasks')
-    #     return super(RegisterPage, self).get(*args, **kwargs)
 
 
 class TaskList(LoginRequiredMixin, ListView):

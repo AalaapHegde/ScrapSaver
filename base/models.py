@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 # Create your models here.
 
+<<<<<<< HEAD
 
 class UserProfileManager(BaseUserManager):
     """helps django work with our custom user model"""
@@ -67,13 +68,16 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
 class UserInfo(models.Model):
     username = models.CharField(max_length=100, default="")
+=======
+class UserInfo(models.Model):
+    ##user = models.ForeignKey ##User, on_delete=models.CASCADE, null= True, blank=True)
+>>>>>>> 4190f0ad9a4aa931423af86553a14a528381d7fe
     organizationName = models.CharField(max_length=200)
     password = models.CharField(max_length=100)
     zipCode = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username
-
 
 class Task(models.Model):
     user = models.ForeignKey(
