@@ -37,8 +37,8 @@ class Users(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     is_admin = models.BooleanField(default=False)
-    last_login = models.DateTimeField(auto_now=True)
-    date_joined = models.DateTimeField(auto_now_add=True)
+    # last_login = models.DateTimeField(auto_now=True)
+    # date_joined = models.DateTimeField(auto_now_add=True)
     zipCode = models.IntegerField(null=True)
 
     is_superuser = models.SmallIntegerField(db_column='is_superuser', blank=True, null=True)

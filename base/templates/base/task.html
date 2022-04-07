@@ -1,4 +1,10 @@
 {% block content %}
 
- <h1>Ingredient: {{ users.username }}</h1>
+ <h1>Ingredient: {{ object }}</h1>
+ <ul>
+  <li>First Name: {{ object.user.first_name }}</li>
+  <li>Last Name: {{ object.user.last_name }}</li>
+  <li>Created: {{ object.created }}</li>
+  <li>Zip Code: {{ object.user.zipCode }}</li>
+ </ul>
 {% endblock %}

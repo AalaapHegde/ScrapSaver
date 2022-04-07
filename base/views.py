@@ -101,10 +101,7 @@ class TaskList(LoginRequiredMixin, ListView):
 
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
-    userinfo = Users.object.get(username=model.user)
-    # context_object_name = 'task'
     context_object_name = 'task'
-    context['users'] = Users.object.all(user = )
     template_name = 'base/task.html'
 
 

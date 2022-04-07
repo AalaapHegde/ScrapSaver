@@ -5,14 +5,13 @@ from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
 
-class UserAdminInfo(admin.ModelAdmin):
+class CustomUserAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['username', 'organizationName', 'password', 'zipCode']}),
+        (None, {'fields': ['username', 'email', 'first_name', 'last_name', 'is_staff']}),
     ]
 
-    list_display = ('username', 'organizationName', 'password', 'zipCode')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
 
 
-admin.site.register(UserInfo, UserAdminInfo)
 admin.site.register(Task)
-admin.site.register(Users, UserAdmin)
+admin.site.register(Users, CustomUserAdmin)
