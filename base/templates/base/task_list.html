@@ -27,9 +27,11 @@
         <tr>
             <td>{{task.title}}</td>
             <td><a href="{%url 'task' task.id%}" > View</a></td>
-            <td><a href="{%url 'task-update' task.id%}" > Edit</a></td>
-            <td><a href="{% url 'task-delete' task.id%}" > Delete</a></td>
 
+            {% if request.user == task.user %}
+                <td><a href="{%url 'task-update' task.id%}" > Edit</a></td>
+                <td><a href="{% url 'task-delete' task.id%}" > Delete</a></td>
+            {% endif %}
         </tr>
         {% empty %}
         <h3>No items</h3>

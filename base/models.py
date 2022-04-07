@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 # Create your models here.
 
+
 class UserProfileManager(BaseUserManager):
     """helps django work with our custom user model"""
     def create_user(self, email, username, password=None):
@@ -46,7 +47,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
     object = UserProfileManager()
 
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = []
     PASSWORD_FIELD = 'password'
     USERNAME_FIELD = 'username'
     is_anonymous = False
@@ -58,7 +59,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         """Django uses this when it needs to convert the object into string"""
-        return self.email
+        return self.username
 
     class Meta:
         db_table = 'users'

@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.template import RequestContext
+from django.template import RequestContext, context
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -101,7 +101,10 @@ class TaskList(LoginRequiredMixin, ListView):
 
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
+    userinfo = Users.object.get(username=model.user)
+    # context_object_name = 'task'
     context_object_name = 'task'
+    context['users'] = Users.object.all(user = )
     template_name = 'base/task.html'
 
 
