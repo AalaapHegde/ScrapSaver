@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
@@ -37,8 +39,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=100)
     is_admin = models.BooleanField(default=False)
-    # last_login = models.DateTimeField(auto_now=True)
-    # date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)
     zipCode = models.IntegerField(null=True)
 
     is_superuser = models.SmallIntegerField(db_column='is_superuser', blank=True, null=True)
@@ -78,7 +79,7 @@ class UserInfo(models.Model):
 class Task(models.Model):
     user = models.ForeignKey(
         Users, on_delete=models.CASCADE, null=True, blank=True)
-    title = models.CharField(max_length=100)
+    food_name = models.CharField(max_length=100)
     quantity = models.IntegerField(default=0)
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField('date created')

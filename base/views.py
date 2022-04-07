@@ -17,15 +17,18 @@ from django.contrib.auth import authenticate, login, logout
 def login_view(request):
     logout(request)
     username = password = ''
-    if request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
+    try:
+        if request.POST:
+            username = request.POST['username']
+            password = request.POST['password']
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('tasks'))
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect(reverse('tasks'))
+    except Exception as e:
+        print(e)
     return render(request, 'base/login.html')
 
 
@@ -70,6 +73,7 @@ def user(request):
 
     return redirect("http://127.0.0.1:8000/login/?next=/")
 
+
 class RegisterPageFormView(FormView):
     template_name = 'base/register.html'
     form_class = RegisterPage
@@ -107,7 +111,7 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['title', 'description', 'quantity', 'created']
+    fields = ['food_name', 'description', 'quantity', 'created']
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
@@ -117,7 +121,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = fields = ['title', 'description', 'quantity', 'created']
+    fields = fields = ['food_name', 'description', 'quantity', 'created']
     success_url = reverse_lazy('tasks')
 
 

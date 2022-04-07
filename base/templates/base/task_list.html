@@ -25,7 +25,7 @@
         </tr>
         {% for task in tasks %}
         <tr>
-            <td>{{task.title}}</td>
+            <td>{{task.food_name}}</td>
             <td><a href="{%url 'task' task.id%}" > View</a></td>
 
             {% if request.user == task.user %}
