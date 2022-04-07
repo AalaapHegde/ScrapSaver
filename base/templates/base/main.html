@@ -1,41 +1,143 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset = "utf-8">
+        <title>ScrapSaver</title>
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <title>To do list</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1"> 
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
-        <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
-            body{
-                background-color: rgb(244, 248, 244);
-                font-family: 'Fredoka', sans-serif;
-                padding-top: 50px;
-
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: "Lato", sans-serif;
             }
 
+            .w3-bar,
+            h1,
+            button {
+                font-family: "Montserrat", sans-serif;
+            }
+
+            .fa-anchor,
+            .fa-coffee {
+                font-size: 200px;
+            }
+
+            h2 {
+                display: inline;
+            }
+
+            .mission {
+                border-style: solid;
+                border-width: 50px;
+                border-color: #b1b0bc;
+                border-radius: 10%;
+            }
+
+            .inspiration {
+                border-style: solid;
+                border-width: 40px;
+                border-color: white;
+                border-radius: 10%;
+            }
+
+            .donate {
+                border-style: solid;
+                border-width: 40px;
+                border-color: green;
+                border-radius: 10%;
+            }
+
+            .background {
+                background-color: #b1b0bc;
+            }
             .container{
-                max-width: 550px;
-                margin: auto;
-                background-color: rgb(25, 135, 238);
-                -webkit-box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
-                box-shadow: 2px 2px 13px -4px rgba(0,0,0,0.21);
+                margin-top: 50px;
             }
+            .first-smaller{
+                font-size: 20px;
+            }
+
+            @media screen and (max-width: 600px) {
+                .first-smaller{
+                    font-size: 10px;
+                }
+            }
+
         </style>
     </head>
 
     <body>
+
+        <!-- Navbar -->
+        <div class="w3-top">
+        <div class="w3-bar w3-black w3-card w3-left-align w3-large w3-green">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-small w3-hover-white w3-large w3-green"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-padding-large w3-hover-white">Home</a>
+            <!--<img src="images/logo.png" class="logo"
+                    width="75%" height="75%"></a>-->
+            <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right ">Sign
+                up/Login</a>
+            <a href="#"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right ">Contact</a>
+            <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right ">About
+                us</a>
+            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right ">Donate</a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="{% url 'home' %}" class="w3-bar-item w3-button w3-padding-large">Home</a>
+            <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-padding-large">Sign up/Login</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Contact Us</a>
+            <a href="{% url 'about' %}" class="w3-bar-item w3-button w3-padding-large">About Us</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Donate</a>
+        </div>
+    </div>
+
+
         <div class="container">
             {% block content %}
 
             {% endblock content %}
-    
         </div>
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-64 w3-center w3-opacity">
+            <div class="w3-xlarge w3-padding-32">
+                <i class="fa fa-facebook-official w3-hover-opacity"></i>
+                <i class="fa fa-instagram w3-hover-opacity"></i>
+                <i class="fa fa-snapchat w3-hover-opacity"></i>
+                <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+                <i class="fa fa-twitter w3-hover-opacity"></i>
+                <i class="fa fa-linkedin w3-hover-opacity"></i>
+            </div>
+
+        </footer>
+
+        <script>
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
     </body>
 
 

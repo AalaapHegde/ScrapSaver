@@ -3,6 +3,8 @@ from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import RequestContext, context
+from django.template.context_processors import request
+from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -129,3 +131,15 @@ class DeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+
+
+def home_page(request):
+    context_object_name = 'home'
+    template_name = 'base/home.html'
+
+    return render(request, 'base/home.html')
+
+
+def about_page(request):
+    return render(request, 'base/about.html')
+
