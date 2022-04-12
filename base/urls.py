@@ -10,6 +10,7 @@ urlpatterns = [
     path('task/', TaskList.as_view(), name='tasks'),
     path('', views.home_page, name='home'),
     path('aboutus/', views.about_page, name='about'),
+    path('donate/', views.donate_page, name='donate'),
     path('task/<int:pk>/', TaskDetail.as_view(), name='task'),
     path('task-create/', TaskCreate.as_view(), name='task-create'),
     path('task-update/<int:pk>/', TaskUpdate.as_view(), name='task-update'),

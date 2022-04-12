@@ -143,3 +143,8 @@ def home_page(request):
 def about_page(request):
     return render(request, 'base/about.html')
 
+
+def donate_page(request):
+    return render(request, 'base/donate.html')
+
+

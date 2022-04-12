@@ -2,10 +2,15 @@
 
  <h1>Ingredient: {{ object.food_name }}</h1>
  <ul>
-  <li>First Name: {{ object.user.first_name }}</li>
-  <li>Last Name: {{ object.user.last_name }}</li>
+<!--  <li>First Name: {{ object.user.first_name }}</li>-->
+<!--  <li>Last Name: {{ object.user.last_name }}</li>-->
+  <li>Username: {{object.user.username}}</li>
+  <li>Organization Name: {{ object.user.organizationName}}</li>
+  <li>Description: {{object.description}}</li>
   <li>Created: {{ object.created }}</li>
   <li>Zip Code: {{ object.user.zipCode }}</li>
  </ul>
 
+
+<p> Return back to ingredient list: <a href = "{% url 'tasks' %}"> TaskList</a></p>
 {% endblock %}
