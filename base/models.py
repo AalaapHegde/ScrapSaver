@@ -76,7 +76,7 @@ class UserInfo(models.Model):
         return self.username
 
 
-class Task(models.Model):
+class Ingredient(models.Model):
     user = models.ForeignKey(
         Users, on_delete=models.CASCADE, null=True, blank=True)
     food_name = models.CharField(max_length=100)

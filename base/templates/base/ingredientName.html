@@ -1,3 +1,4 @@
+{% extends 'base/main.html' %}
 {% block content %}
 
  <h1>Ingredient: {{ object.food_name }}</h1>
@@ -12,5 +13,5 @@
  </ul>
 
 
-<p> Return back to ingredient list: <a href = "{% url 'tasks' %}"> TaskList</a></p>
+<p> Return back to ingredient list: <a href = "{% url 'ingredient' %}"> IngredientList</a></p>
 {% endblock %}

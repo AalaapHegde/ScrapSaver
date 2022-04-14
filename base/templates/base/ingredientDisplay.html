@@ -10,7 +10,7 @@
 
     <hr>
     <h1>Available Produce</h1>
-    <a href="{% url 'task-create' %}">Add Food</a>
+    <a href="{% url 'ingredient-create' %}">Add Food</a>
 
     <form method="GET">
         <input type = 'text' name = 'search-area' value = {{search_input}}>
@@ -23,14 +23,14 @@
             <th></th>
             <th></th>
         </tr>
-        {% for task in tasks %}
+        {% for i in ingredient %}
         <tr>
-            <td>{{task.food_name}}</td>
-            <td><a href="{%url 'task' task.id%}" > View</a></td>
+            <td>{{i.food_name}}</td>
+            <td><a href="{%url 'ingredientDetail' i.id%}" > View</a></td>
 
-            {% if request.user == task.user %}
-                <td><a href="{%url 'task-update' task.id%}" > Edit</a></td>
-                <td><a href="{% url 'task-delete' task.id%}" > Delete</a></td>
+            {% if request.user == i.user %}
+                <td><a href="{%url 'ingredient-update' i.id%}" > Edit</a></td>
+                <td><a href="{% url 'ingredient-delete' i.id%}" > Delete</a></td>
             {% endif %}
         </tr>
         {% empty %}

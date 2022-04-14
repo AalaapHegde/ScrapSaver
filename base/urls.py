@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import TaskList, TaskDetail, TaskCreate, TaskUpdate, DeleteView, CustomLoginView, RegisterPageFormView
+from .views import IngredientList, IngredientDetail, IngredientCreate, IngredientUpdate, DeleteView, CustomLoginView, RegisterPageFormView
 from django.contrib.auth.views import LogoutView
 from . import views
 
@@ -7,14 +7,14 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     path('register/', RegisterPageFormView.as_view(), name='register'),
-    path('task/', TaskList.as_view(), name='tasks'),
+    path('ingredient/', IngredientList.as_view(), name='ingredient'),
     path('', views.home_page, name='home'),
     path('about_us/', views.about_page, name='about'),
     path('donate/', views.donate_page, name='donate'),
-    path('task/<int:pk>/', TaskDetail.as_view(), name='task'),
-    path('task-create/', TaskCreate.as_view(), name='task-create'),
-    path('task-update/<int:pk>/', TaskUpdate.as_view(), name='task-update'),
-    path('task-delete/<int:pk>/', DeleteView.as_view(), name='task-delete'),
+    path('ingredient/<int:pk>/', IngredientDetail.as_view(), name='ingredientDetail'),
+    path('ingredient-create/', IngredientCreate.as_view(), name='ingredient-create'),
+    path('ingredient-update/<int:pk>/', IngredientUpdate.as_view(), name='ingredient-update'),
+    path('ingredient-delete/<int:pk>/', DeleteView.as_view(), name='ingredient-delete'),
     path('user/', views.user, name='user')
 
 ]

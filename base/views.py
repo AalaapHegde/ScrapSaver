@@ -12,7 +12,7 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
-from .models import Task, UserInfo, Users, UserProfileManager
+from .models import Ingredient, UserInfo, Users, UserProfileManager
 from django.contrib.auth import authenticate, login, logout
 
 
@@ -28,7 +28,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect(reverse('tasks'))
+                    return HttpResponseRedirect(reverse('ingredient'))
     except Exception as e:
         print(e)
     return render(request, 'base/login.html')
@@ -40,7 +40,7 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse_lazy('tasks')
+        return reverse_lazy('ingredient')
 
 
 class RegisterPage(forms.ModelForm):
@@ -80,7 +80,7 @@ class RegisterPageFormView(FormView):
     template_name = 'base/register.html'
     form_class = RegisterPage
     redirect_authenticated_user = True
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('ingredient')
 
     # def form_valid(self, form):
     #     user = form.UserInfo()
@@ -89,48 +89,53 @@ class RegisterPageFormView(FormView):
     #     return super(RegisterPageFormView, self).form_valid(form)
 
 
-class TaskList(LoginRequiredMixin, ListView):
-    model = Task
-    context_object_name = 'tasks'
+class IngredientList(LoginRequiredMixin, ListView):
+    model = Ingredient
+    context_object_name = 'ingredient'
+    template_name = 'base/ingredientDisplay.html'
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tasks'] = context['tasks'].filter()
+        context['ingredient'] = context['ingredient'].filter()
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
-            context['tasks'] = context['tasks'].filter(
-                title__icontains=search_input)
+            context['ingredient'] = context['ingredient'].filter(
+                food_name__icontains=search_input)
 
         context['search_input'] = search_input
         return context
 
 
-class TaskDetail(LoginRequiredMixin, DetailView):
-    model = Task
-    context_object_name = 'task'
-    template_name = 'base/task.html'
+class IngredientDetail(LoginRequiredMixin, DetailView):
+    model = Ingredient
+    context_object_name = 'ingredientDetail'
+    template_name = 'base/ingredientName.html'
 
 
-class TaskCreate(LoginRequiredMixin, CreateView):
-    model = Task
+class IngredientCreate(LoginRequiredMixin, CreateView):
+    model = Ingredient
     fields = ['food_name', 'description', 'quantity', 'created']
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('ingredient')
+    template_name = 'base/ingredientForm.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        return super(TaskCreate, self).form_valid(form)
+        return super(IngredientCreate, self).form_valid(form)
 
 
-class TaskUpdate(LoginRequiredMixin, UpdateView):
-    model = Task
+class IngredientUpdate(LoginRequiredMixin, UpdateView):
+    model = Ingredient
     fields = fields = ['food_name', 'description', 'quantity', 'created']
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('ingredient')
+    template_name = 'base/ingredientForm.html'
 
 
 class DeleteView(LoginRequiredMixin, DeleteView):
-    model = Task
-    context_object_name = 'task'
-    success_url = reverse_lazy('tasks')
+    model = Ingredient
+    context_object_name = 'ingredientDetail'
+    success_url = reverse_lazy('ingredient')
+    template_name = 'base/ingredientConfirmDelete.html'
 
 
 def home_page(request):
