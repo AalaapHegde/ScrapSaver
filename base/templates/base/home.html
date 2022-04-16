@@ -1,4 +1,81 @@
 {% extends 'base/main.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+<div class="homeScreen">
+    <main class="main ">
+       <section class="homeSlider">
+          <div class="slide">
+             <img src="{% static 'images/slide1.png' %}" height="" width="" alt="slide">
+             <div class="cont">
+                <h1>1 in 10 kids</h1>
+                <h2>face food insecurity</h2>
+             </div>
+          </div>
+          <div class="slide">
+             <img src="{% static 'images/slide2.png' %}" height="" width="" alt="slide">
+             <div class="cont">
+                <h1>80 billion pounds </h1>
+                <h2>of annual food waste in the US annually</h2>
+             </div>
+          </div>
+          <div class="slide">
+             <img src="{% static 'images/slide3.png' %}" height="" width="" alt="slide">
+             <div class="cont">
+                <h1>30-40% </h1>
+                <h2>of food produced goes to waste</h2>
+             </div>
+          </div>
+          <div class="slide">
+             <img src="{% static 'images/slide4.png' %}" height="" width="" alt="slide">
+             <div class="cont">
+                <h2>Landfill gas is</h2>
+                <h1>20x more harmful</h1>
+                <h2>than CO2 emissions</h2>
+             </div>
+          </div>
+       </section>
+       <h3>Mission Statement</h3>
+       <div class="whiteCard">
+          <p>Our mission is simple: connect resturants and local grocery stores to food banks in order to reduce and eliminate food waste in a more efficient manner. Through our website, donors can send their extra produce to charities, who can use this to provide meals for the hungry. </p>
+       </div>
+       <div class="whiteFlex">
+          <div>
+             <h3>Donate Food</h3>
+             <div class="whiteCard">
+                <p>We know how much unavoidable waste restaurants and grocery stores produce, so we want to help! ScrapSaver helps connect you to local charities. We will pick up your excess produce, such as carrots or potatoes, and send these over to a local charity.</p>
+             </div>
+          </div>
+          <div>
+             <h3>Receive food</h3>
+             <div class="whiteCard">
+                <p>As a food bank you will be responsible for looking for available products on ScrapSaver that resturants and grocery stores willl post. You can also put out requests for any specifc items that you want. </p>
+             </div>
+          </div>
+       </div>
+    </main>
+    <footer class="footer">
+       <h5>Connect With Us</h5>
+       <div class="fooFlex">
+          <ul>
+             <li><a href="#"><img src="{% static 'images/fb.png' %}" height="" width="" alt="icon"></a></li>
+             <li><a href="#"><img src="{% static 'images/twitter.png' %}" height="" width="" alt="icon"></a></li>
+             <li><a href="#"><img src="{% static 'images/insta.png' %}" height="" width="" alt="icon"></a></li>
+             <li><a href="#"><img src="{% static 'images/youtube.png'%}" height="" width="" alt="icon"></a></li>
+          </ul>
+          <div class="right">
+             <a href="mailto:scrapsaver@gmail.com"> scrapsaver@gmail.com<a>
+             <a href="tel:+16692257174">1(669)-225-7174</a>
+          </div>
+       </div>
+    </footer>
+ </div>
+
+{% endblock content %}
+{% comment %} {% extends 'base/main.html' %}
 {% block title %}
     Home
 {% endblock %}
@@ -86,4 +163,4 @@
 
     </div>
 
-{% endblock %}
+{% endblock %} {% endcomment %}
