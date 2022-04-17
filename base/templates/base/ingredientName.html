@@ -2,8 +2,8 @@
 {% load static %}
 {% block header %}
   <header class="header">
-    <a href="#" class="logo"><img src="{% static 'images/logo.svg' %}" height="" width="" alt="logo"></a>
-    <h1>Welcome Sam’s Bistro</h1>
+    <a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.svg' %}" height="" width="" alt="logo"></a>
+    <h1>Welcome {{request.user.username}}</h1>
     <div>
         <a href="{% url 'ingredient' %}" class="dpBtn">Produce List</a>
         <a href="#" class="dpBtn">Sam’s Bistro</a>

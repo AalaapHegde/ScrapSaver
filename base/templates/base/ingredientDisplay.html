@@ -2,11 +2,11 @@
 {% load static %}
 {% block header %}
     <header class="header">
-        <a href="#" class="logo"><img src="{% static 'images/logo.svg' %}" height="" width="" alt="logo"></a>
-        <h1>Welcome Sam’s Bistro</h1>
+        <a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.svg' %}" height="" width="" alt="logo"></a>
+        <h1>Welcome {{request.user.username}}</h1>
         <div>
             
-            <a href="#" class="dpBtn">Sam’s Bistro</a>
+            <a href="#" class="dpBtn">{{request.user.username}}</a>
         </div>
     </header>
 {% endblock header %}
@@ -14,9 +14,9 @@
 <main class="main">
     <div class="productScreen">
         <div class="sidebar">
-            <h2>Sam’s Bistro</h2>
+            <h2>{{request.user}}</h2>
             <div class="proBtnWrap">
-                <button class="btn">Add Produce</button>
+                <a href="{% url 'ingredient-create' %}"><button class="btn">Add Produce</button></a>
             </div>
             <div class="msgsWrap">
                 <div class="msgCard">
