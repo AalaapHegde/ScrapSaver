@@ -83,7 +83,8 @@ class Ingredient(models.Model):
     quantity = models.IntegerField(default=0)
     description = models.TextField(null=True, blank=True)
     created = models.DateTimeField('date created')
+    food_image = models.ImageField(null=True, blank=True, upload_to='foodImages/')
 
     def __str__(self):
-        return self.title
+        return self.food_name
     

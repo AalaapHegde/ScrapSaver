@@ -1,7 +1,47 @@
 {% extends 'base/main.html' %}
+{% load static %}
+{% block header %}
+    <header class="header">
+        <a href="#" class="logo"><img src="{% static 'images/logo.svg' %}" height="" width="" alt="logo"></a>
+        <h1>Welcome Sam’s Bistro</h1>
+        <div>
+            
+            <a href="#" class="dpBtn">Sam’s Bistro</a>
+        </div>
+    </header>
+{% endblock header %}
 {% block content %}
-
-{% if request.user.is_authenticated %}
+<main class="main">
+    <div class="productScreen">
+        <div class="sidebar">
+            <h2>Sam’s Bistro</h2>
+            <div class="proBtnWrap">
+                <button class="btn">Add Produce</button>
+            </div>
+            <div class="msgsWrap">
+                <div class="msgCard">
+                    <h3><button class="btn"><img src="{% static 'images/add-btn.svg' %}" height="" width="" alt="btn"></button>Messages </h3>
+                    <button class="msgBtn">San Jose Food Drive</button>
+                    <button class="msgBtn">Los Gatos Soup Kitchen</button>
+                    <button class="msgBtn">Los Altos Food Bank</button>
+                    <button class="msgBtn">Los Altos Food Bank</button>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <h2>Available Produce</h2>
+            <div class="proFlex">
+                {% for ingredient in ingredient %}
+                    <div class="proBox">
+                        <img src="{{ingredient.food_image.url}}" height="" width="" alt="product">
+                        <a href="{% url 'ingredientDetail' ingredient.id %}">{{ingredient.food_name}}</a>
+                    </div>
+                {% endfor %}                
+            </div>
+        </div>
+    </div>
+</main>
+{% comment %} {% if request.user.is_authenticated %}
     <p>{{request.user}}</p>
     <a href="{% url 'logout' %}">Logout</a>
     {% else %}
@@ -36,5 +76,5 @@
         {% empty %}
         <h3>No items</h3>
         {% endfor %}
-    </table>
+    </table> {% endcomment %}
 {% endblock content %}
