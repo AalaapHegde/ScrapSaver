@@ -6,7 +6,7 @@
     <h1>Welcome {{request.user.username}}</h1>
     <div>
         <a href="{% url 'ingredient' %}" class="dpBtn">Produce List</a>
-        <a href="#" class="dpBtn">Sam’s Bistro</a>
+        <a href="#" class="dpBtn">{{request.user.username}}</a>
     </div>
   </header>
 {% endblock header %}
@@ -16,7 +16,7 @@
  <div class="proDetailScreen">
      <div class="left">
          <h2>{{object.food_name}}</h2>
-         <img src="{{object.food_image.url}}" height="" width="" alt="pro">
+         <img src="{% if object.food_image %}{{object.food_image.url}} {% else %}{% static 'images/noImage.png' %}{% endif %}" height="" width="" alt="pro">
      </div>
      <div class="right">
          <div class="detailCard">
