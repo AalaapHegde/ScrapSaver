@@ -1,6 +1,11 @@
 {% extends 'base/main.html' %}
+{% block title %}
+    Register
+{% endblock title %}
+
+
 {% block content %}
-    <h1>Register</h1>
+    {% comment %} <h1>Register</h1>
 
     <form action="{% url 'user' %}" method = "post">
         {% csrf_token %}
@@ -8,5 +13,37 @@
         <input type = "submit" value = "Register">
     </form>
 
-    <p> Already have an account?  <a href = "{% url 'login' %}"> <button type="button"> Login</button></a></p>
+    <p> Already have an account?  <a href = "{% url 'login' %}"> <button type="button"> Login</button></a></p> {% endcomment %}
+    <main class="main">
+        <div class="accScreen">
+            <div class="signCard">
+                <div class="inner">
+                    <form action="{% url 'user' %}" method = "post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_username">Username</label>                            
+                            <input type="text" name="username" required="" id="id_username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Organization Name</label>            
+                            <input type="text" name="organizationName" required="" id="id_organizationName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>                            
+                            <input type="email" name="email" maxlength="100" required="" id="id_email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>                        
+                            <input type="password" name="password" required="" id="id_password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Zip Code</label>                            
+                            <input type="number" name="zipCode" required="" id="id_zipCode" class="form-control">
+                        </div>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock content %}
