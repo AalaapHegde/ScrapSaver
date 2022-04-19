@@ -33,7 +33,7 @@
             <div class="proFlex">
                 {% for ingredient in ingredient %}
                     <div class="proBox">
-                        <img src="{{ingredient.food_image.url}}" height="" width="" alt="product">
+                        <img src="{% if ingredient.food_image %}{{ingredient.food_image.url}} {% else %}{% static 'images/noImage.png' %}{% endif %}" height="" width="" alt="product">
                         <a href="{% url 'ingredientDetail' ingredient.id %}">{{ingredient.food_name}}</a>
                     </div>
                 {% endfor %}                
