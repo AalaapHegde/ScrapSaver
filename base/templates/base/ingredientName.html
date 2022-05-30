@@ -19,12 +19,13 @@
          <img src="{% if object.food_image %}{{object.food_image.url}} {% else %}{% static 'images/noImage.png' %}{% endif %}" height="" width="" alt="pro">
      </div>
      <div class="right">
+
          <div class="detailCard">
              <h3>Donator: <span>{{object.user.organizationName}}</span></h3>
              <h3>Description: {{object.description}}</h3>
              <h3>Quantity Requested: {{object.quantity}} lbs</h3>
          </div>
-         <button class="btn">Send Request for item</button>
+         <h3><a href="mailto: {{object.user.email}}" class="btn btn primary" >Send Request for Item<a></h3>
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
      </div>
  </div>
