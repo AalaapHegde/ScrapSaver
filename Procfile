@@ -1,1 +1,1 @@
-web: gunicorn ScrapSaver.wsgi
+web: gunicorn scrap-saver.wsgi
