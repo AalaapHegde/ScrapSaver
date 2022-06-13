@@ -24,7 +24,7 @@
              <h3>Quality: {{object.description}}</h3>
              <h3>Quantity Requested: {{object.quantity}} lbs</h3>
          </div>
-         <button class="btn">Send Request for item</button>
+         <h3><a href="mailto: {{object.user.email}}" class="btn btn primary" >Send Request for Item<a></h3>
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
      </div>
  </div>
