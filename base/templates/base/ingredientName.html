@@ -23,7 +23,7 @@
              <h3>Requestor: <span>{{object.user.organizationName}}</span></h3>
              <h3>Quality: {{object.description}}</h3>
              <h3>Quantity Requested: {{object.quantity}} lbs</h3>
-             <h3>Date Requested:{{ object.created }} </h3>
+             <h3>Date Uploaded:{{ object.created }} </h3>
          </div>
          <h3><a href="mailto: {{object.user.email}}" class="btn btn primary" >Send Request for Item<a></h3>
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
