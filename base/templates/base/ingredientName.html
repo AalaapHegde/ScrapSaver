@@ -16,7 +16,6 @@
  <div class="proDetailScreen">
      <div class="left">
          <h2>{{object.food_name}}</h2>
-         <img src="{% if object.food_image %}{{object.food_image.url}} {% else %}{% static 'images/noImage.png' %}{% endif %}" height="" width="" alt="pro">
      </div>
      <div class="right">
 
@@ -25,10 +24,18 @@
              <h3>Description: {{object.description}}</h3>
              <h3>Quantity Requested: {{object.quantity}} lbs</h3>
          </div>
-         <h3><a href="mailto: {{object.user.email}}" class="btn btn primary" >Send Request for Item<a></h3>
+         <h3><a href="mailto: {{object.user.email}},aalaaphegde@gmail.com, aryanbaldua@gmail.com" class="btn btn primary"> Send Request for Item </a> </h3>
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
      </div>
  </div>
+</main>
+
+    <tr>
+        {% if request.user == object.user %}
+            <td><a href="{%url 'ingredient-update' object.id%}" class = 'dpBtn'  > Edit</a></td>
+            <td><a href="{% url 'ingredient-delete' object.id%}" class = 'dpBtn' > Delete</a></td>
+        {% endif %}
+    </tr>
  {% comment %} <h1>Ingredient: {{ object.food_name }}</h1>
  <ul>
 <!--  <li>First Name: {{ object.user.first_name }}</li>-->
@@ -41,5 +48,5 @@
  </ul>
 
 
-<p> Return back to ingredient list: <a href = "{% url 'ingredient' %}"> IngredientList</a></p> {% endcomment %}
+<p> Return back to ingredient list: <a href = "{% url 'ingredient' %}"> IngredientList</a></p>{% endcomment %}
 {% endblock %}
