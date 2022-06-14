@@ -94,7 +94,6 @@ class IngredientList(LoginRequiredMixin, ListView):
     context_object_name = 'ingredient'
     template_name = 'base/ingredientDisplay.html'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ingredient'] = context['ingredient'].filter()
@@ -102,7 +101,6 @@ class IngredientList(LoginRequiredMixin, ListView):
         if search_input:
             context['ingredient'] = context['ingredient'].filter(
                 food_name__icontains=search_input)
-
         context['search_input'] = search_input
         return context
 

@@ -30,6 +30,10 @@
         </div>
         <div class="right">
             <h2>Available Produce</h2>
+            <form method="GET">
+                <input type = "text" name = "search-area" value = {{search_input}}>
+                <input type = "submit" value = "Search">
+            </form>
             <div class="proFlex">
                 {% for ingredient in ingredient %}
                     <div class="proBox">
