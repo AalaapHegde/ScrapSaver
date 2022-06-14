@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-v3kqdx2tqejdjc^u*%h9$dvhgb6#9ojzuzv#5%$8s&ml*mk4w&
 DEBUG = True
 
 ALLOWED_HOSTS = [
-'scrap-saver.herokuapp.com',
-'127.0.0.1'
+    'scrap-saver.herokuapp.com',
+    '127.0.0.1'
+    'scrapsaver.app'
 ]
 
 
