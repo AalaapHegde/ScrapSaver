@@ -6,7 +6,7 @@
         <h1>Welcome {{request.user.username}}</h1>
         <div>
             
-            <a href="#" class="dpBtn">{{request.user.username}}</a>
+            <a href="{% url 'profile' %}" class="dpBtn">{{request.user.username}}</a>
         </div>
     </header>
 {% endblock header %}

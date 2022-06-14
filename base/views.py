@@ -151,3 +151,8 @@ def donate_page(request):
     return render(request, 'base/donate.html')
 
 
+def profile_page(request):
+    return render(request, 'base/profile.html')
+
+
+

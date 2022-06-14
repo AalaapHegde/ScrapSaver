@@ -15,6 +15,7 @@ urlpatterns = [
     path('ingredient-create/', IngredientCreate.as_view(), name='ingredient-create'),
     path('ingredient-update/<int:pk>/', IngredientUpdate.as_view(), name='ingredient-update'),
     path('ingredient-delete/<int:pk>/', DeleteView.as_view(), name='ingredient-delete'),
-    path('user/', views.user, name='user')
+    path('user/', views.user, name='user'),
+    path('profile/', views.profile_page, name = 'profile')
 
 ]
