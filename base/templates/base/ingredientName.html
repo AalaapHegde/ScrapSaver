@@ -28,6 +28,12 @@
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
      </div>
  </div>
+    <tr>
+        {% if request.user == object.user %}
+            <td><a href="{%url 'ingredient-update' object.id%}" class = 'dpBtn'  > Edit</a></td>
+            <td><a href="{% url 'ingredient-delete' object.id%}" class = 'dpBtn' > Delete</a></td>
+        {% endif %}
+    </tr>
  {% comment %} <h1>Ingredient: {{ object.food_name }}</h1>
  <ul>
 <!--  <li>First Name: {{ object.user.first_name }}</li>-->
