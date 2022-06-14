@@ -24,10 +24,12 @@
              <h3>Description: {{object.description}}</h3>
              <h3>Quantity Requested: {{object.quantity}} lbs</h3>
          </div>
-         <h3><a href="mailto: {{object.user.email}},aalaaphegde@gmail.com, aryanbaldua@gmail.com" class="btn btn primary" >Send Request for Item<a></h3>
+         <h3><a href="mailto: {{object.user.email}},aalaaphegde@gmail.com" class="btn btn primary"> Send Request for Item </a> </h3>
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
      </div>
  </div>
+</main>
+
     <tr>
         {% if request.user == object.user %}
             <td><a href="{%url 'ingredient-update' object.id%}" class = 'dpBtn'  > Edit</a></td>
@@ -46,5 +48,5 @@
  </ul>
 
 
-<p> Return back to ingredient list: <a href = "{% url 'ingredient' %}"> IngredientList</a></p> {% endcomment %}
+<p> Return back to ingredient list: <a href = "{% url 'ingredient' %}"> IngredientList</a></p>{% endcomment %}
 {% endblock %}
