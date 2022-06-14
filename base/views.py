@@ -79,7 +79,7 @@ def user(request):
         user = Users.object.create(username=username, organizationName=organizationName, password=password1,
                                    zipCode=zipCode, email=email, is_active=is_active, is_staff=is_staff)
 
-    return redirect("http://127.0.0.1:8000/login/?next=/")
+    return HttpResponseRedirect(reverse('login'))
 
 
 class RegisterPageFormView(FormView):

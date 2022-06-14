@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'scrap-saver.herokuapp.com',
-    '127.0.0.1'
+    '127.0.0.1',
     'scrapsaver.app'
 ]
 
