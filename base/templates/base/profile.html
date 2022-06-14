@@ -1,5 +1,12 @@
-{% extends "base/main.html" %}
-
 {% block title %}
 This is your Profile
-{% endblock %}
+{% endblock title %}
+
+{% block content %}
+<form method = "post">
+        {% csrf_token %}
+        {{ u_form }}
+        <input type = "submit" value = "Update">
+</form>
+<a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
+{% endblock content%}

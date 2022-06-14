@@ -14,6 +14,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 from .models import Ingredient, UserInfo, Users, UserProfileManager
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .updateForms import UserUpdateForm
+from django.contrib import messages
+
 
 
 def login_view(request):
@@ -52,7 +57,8 @@ class RegisterPage(forms.ModelForm):
 
     class Meta:
         model = UserInfo
-        fields = ("username",)
+        fields = ("username", "organizationName", "email", "password", "zipCode")
+
 
 
 def set_password(self, raw_password):
@@ -152,7 +158,19 @@ def donate_page(request):
 
 
 def profile_page(request):
-    return render(request, 'base/profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+            return HttpResponseRedirect(reverse('ingredient'))
+                #render(request, 'base/ingredientDisplay.html')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+
+    context = {
+        'u_form': u_form
+    }
+    return render(request, 'base/profile.html', context)
 
 
 
