@@ -23,6 +23,7 @@
              <h3>Donator: <span>{{object.user.organizationName}}</span></h3>
              <h3>Description: {{object.description}}</h3>
              <h3>Quantity Requested: {{object.quantity}} lbs</h3>
+             <h3>Date Uploaded:{{ object.created }} </h3>
          </div>
          <h3><a href="mailto: {{object.user.email}},aalaaphegde@gmail.com, aryanbaldua@gmail.com" class="btn btn primary"> Send Request for Item </a> </h3>
          <a href="{% url 'ingredient' %}"><button class="btn">Return to produce list</button></a>
