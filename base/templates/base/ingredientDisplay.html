@@ -6,8 +6,7 @@
         <h1>Welcome {{request.user.username}}</h1>
         <div>
 
-            <a href="#" class="dpBtn">{{request.user.username}}</a>
-        </div>
+            <a href="{% url 'profile' %}" class="dpBtn">{{request.user.username}}</a> </div>
     </header>
 {% endblock header %}
 {% block content %}
@@ -22,11 +21,14 @@
         </div>
         <div class="right">
             <h2>Available Produce</h2>
+            <form method="GET">
+                <input type = "text" name = "search-area" value = {{search_input}}>
+                <input type = "submit" value = "Search">
+            </form>
             <div class="proFlex">
                 {% for ingredient in ingredient %}
                     <div class="proBox">
-                        <img src="{% if ingredient.food_image %}{{ingredient.food_image.url}} {% else %}{% static 'images/noImage.png' %}{% endif %}" height="" width="" alt="product">
-                        <a href="{% url 'ingredientDetail' ingredient.id %}">{{ingredient.food_name}}</a>
+                        <a href="{% url 'ingredientDetail' ingredient.id %}">{{ingredient.food_name}}: {{ingredient.quantity}} lbs </a>
                     </div>
                 {% endfor %}
             </div>
