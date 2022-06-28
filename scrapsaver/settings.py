@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v3kqdx2tqejdjc^u*%h9$dvhgb6#9ojzuzv#5%$8s&ml*mk4w&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'scrap-saver.herokuapp.com',
