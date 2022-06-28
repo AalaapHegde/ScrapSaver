@@ -18,6 +18,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .updateForms import UserUpdateForm
 from django.contrib import messages
+import datetime
+from django.db.models.fields import (
+    DateField, DateTimeField, DurationField, Field, IntegerField, TimeField,
+)
 
 
 
@@ -119,6 +123,8 @@ class IngredientDetail(LoginRequiredMixin, DetailView):
 
 class IngredientCreate(LoginRequiredMixin, CreateView):
     model = Ingredient
+    food_name = "prep"
+
     fields = ['food_name', 'description', 'quantity', 'created']
     success_url = reverse_lazy('ingredient')
     template_name = 'base/ingredientForm.html'
@@ -163,7 +169,6 @@ def profile_page(request):
         if u_form.is_valid():
             u_form.save()
             return HttpResponseRedirect(reverse('ingredient'))
-                #render(request, 'base/ingredientDisplay.html')
     else:
         u_form = UserUpdateForm(instance=request.user)
 
