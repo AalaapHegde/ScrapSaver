@@ -5,9 +5,8 @@
         <a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.svg' %}" height="" width="" alt="logo"></a>
         <h1>Welcome {{request.user.username}}</h1>
         <div>
-            
-            <a href="#" class="dpBtn">{{request.user.username}}</a>
-        </div>
+
+            <a href="{% url 'profile' %}" class="dpBtn">{{request.user.username}}</a> </div>
     </header>
 {% endblock header %}
 {% block content %}
@@ -18,25 +17,20 @@
             <div class="proBtnWrap">
                 <a href="{% url 'ingredient-create' %}"><button class="btn">Add Produce</button></a>
             </div>
-            <div class="msgsWrap">
-                <div class="msgCard">
-                    <h3><button class="btn"><img src="{% static 'images/add-btn.svg' %}" height="" width="" alt="btn"></button>Messages </h3>
-                    <button class="msgBtn">San Jose Food Drive</button>
-                    <button class="msgBtn">Los Gatos Soup Kitchen</button>
-                    <button class="msgBtn">Los Altos Food Bank</button>
-                    <button class="msgBtn">Los Altos Food Bank</button>
-                </div>
-            </div>
+
         </div>
         <div class="right">
             <h2>Available Produce</h2>
+            <form method="GET">
+                <input type = "text" name = "search-area" value = {{search_input}}>
+                <input type = "submit" value = "Search">
+            </form>
             <div class="proFlex">
                 {% for ingredient in ingredient %}
                     <div class="proBox">
-                        <img src="{% if ingredient.food_image %}{{ingredient.food_image.url}} {% else %}{% static 'images/noImage.png' %}{% endif %}" height="" width="" alt="product">
-                        <a href="{% url 'ingredientDetail' ingredient.id %}">{{ingredient.food_name}}</a>
+                        <a href="{% url 'ingredientDetail' ingredient.id %}">{{ingredient.food_name}}: {{ingredient.quantity}} lbs </a>
                     </div>
-                {% endfor %}                
+                {% endfor %}
             </div>
         </div>
     </div>

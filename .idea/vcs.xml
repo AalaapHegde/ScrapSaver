@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/aws-elastic-beanstalk-cli-setup" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/scrap-saver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/scrap-saver_deleted" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/scrapsaver" vcs="Git" />
   </component>
 </project>

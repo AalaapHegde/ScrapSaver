@@ -14,6 +14,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
 from .models import Ingredient, UserInfo, Users, UserProfileManager
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .updateForms import UserUpdateForm
+from django.contrib import messages
+import datetime
+from django.db.models.fields import (
+    DateField, DateTimeField, DurationField, Field, IntegerField, TimeField,
+)
+
 
 
 def login_view(request):
@@ -52,7 +61,8 @@ class RegisterPage(forms.ModelForm):
 
     class Meta:
         model = UserInfo
-        fields = ("username",)
+        fields = ("username", "organizationName", "email", "password", "zipCode")
+
 
 
 def set_password(self, raw_password):
@@ -73,7 +83,7 @@ def user(request):
         user = Users.object.create(username=username, organizationName=organizationName, password=password1,
                                    zipCode=zipCode, email=email, is_active=is_active, is_staff=is_staff)
 
-    return redirect("http://127.0.0.1:8000/login/?next=/")
+    return HttpResponseRedirect(reverse('login'))
 
 
 class RegisterPageFormView(FormView):
@@ -94,7 +104,6 @@ class IngredientList(LoginRequiredMixin, ListView):
     context_object_name = 'ingredient'
     template_name = 'base/ingredientDisplay.html'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['ingredient'] = context['ingredient'].filter()
@@ -102,7 +111,6 @@ class IngredientList(LoginRequiredMixin, ListView):
         if search_input:
             context['ingredient'] = context['ingredient'].filter(
                 food_name__icontains=search_input)
-
         context['search_input'] = search_input
         return context
 
@@ -115,6 +123,8 @@ class IngredientDetail(LoginRequiredMixin, DetailView):
 
 class IngredientCreate(LoginRequiredMixin, CreateView):
     model = Ingredient
+    food_name = "prep"
+
     fields = ['food_name', 'description', 'quantity', 'created']
     success_url = reverse_lazy('ingredient')
     template_name = 'base/ingredientForm.html'
@@ -151,5 +161,21 @@ def about_page(request):
 
 def donate_page(request):
     return render(request, 'base/donate.html')
+
+
+def profile_page(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+            return HttpResponseRedirect(reverse('ingredient'))
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+
+    context = {
+        'u_form': u_form
+    }
+    return render(request, 'base/profile.html', context)
+
 
 
